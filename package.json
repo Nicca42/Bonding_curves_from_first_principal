@@ -5,12 +5,13 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^3.4.0",
     "hardhat": "^2.0.11"
   },
   "scripts": {
     "build": "npx hardhat compile",
-    "test": "npx hardhat test"
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",

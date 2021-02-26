@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/contracts/BondedToken.sol": {
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/contracts/BondedToken.sol": {
       "lastModificationDate": 1614355949236,
       "contentHash": "fcb661163cbc7dc710c7c54e6a52396d",
       "sourceName": "contracts/BondedToken.sol",
@@ -38,8 +38,8 @@
         "BondedToken"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1614352638878,
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1614357265310,
       "contentHash": "8065b340476f61365c076897199425f1",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -76,8 +76,8 @@
         "ERC20"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1614352638878,
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1614357265310,
       "contentHash": "6748815a5b45c4aeeda56819f41190e0",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -112,8 +112,8 @@
         "Ownable"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1614352638878,
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1614357265309,
       "contentHash": "2adbd82f6d055a4751566d4671512b03",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -146,8 +146,8 @@
         "Context"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1614352638878,
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1614357265310,
       "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -180,8 +180,8 @@
         "IERC20"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
-      "lastModificationDate": 1614352638878,
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1614357265311,
       "contentHash": "e03e12206057e809eb76c5f681170c32",
       "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
       "solcConfig": {
@@ -214,43 +214,7 @@
         "SafeMath"
       ]
     },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/contracts/CollateralToken.sol": {
-      "lastModificationDate": 1614353308418,
-      "contentHash": "bd04e604a1064861ad513e29a1a9ffe1",
-      "sourceName": "contracts/CollateralToken.sol",
-      "solcConfig": {
-        "version": "0.7.3",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
-      ],
-      "versionPragmas": [
-        "0.7.3"
-      ],
-      "artifacts": [
-        "CollateralToken"
-      ]
-    },
-    "/Users/veronicac/Desktop/ANSWERS_Hello_dec_workshop/contracts/Curve.sol": {
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/contracts/Curve.sol": {
       "lastModificationDate": 1614356100021,
       "contentHash": "c19e6fd539b808bdc75bb470de47731d",
       "sourceName": "contracts/Curve.sol",
@@ -287,6 +251,42 @@
       ],
       "artifacts": [
         "Curve"
+      ]
+    },
+    "/Users/veronicac/Desktop/projects/freelance/Bonding_curves_from_first_principal/contracts/CollateralToken.sol": {
+      "lastModificationDate": 1614353308418,
+      "contentHash": "bd04e604a1064861ad513e29a1a9ffe1",
+      "sourceName": "contracts/CollateralToken.sol",
+      "solcConfig": {
+        "version": "0.7.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "0.7.3"
+      ],
+      "artifacts": [
+        "CollateralToken"
       ]
     }
   }
