@@ -47,15 +47,15 @@ contract Curve is Ownable {
 
     function buyCost(uint256 _amount) public view returns(uint256) {
         return (
-            bondedToken_.totalSupply().add(_amount) - 
-            bondedToken_.totalSupply()
+            areaAtSupply(bondedToken_.totalSupply().add(_amount)) - 
+            areaAtSupply(bondedToken_.totalSupply())
         );
     }
 
     function sellReward(uint256 _amount) public view returns(uint256) {
         return (
-            bondedToken_.totalSupply() - 
-            bondedToken_.totalSupply().sub(_amount)
+            areaAtSupply(bondedToken_.totalSupply()) - 
+            areaAtSupply(bondedToken_.totalSupply().sub(_amount))
         );
     }
 
