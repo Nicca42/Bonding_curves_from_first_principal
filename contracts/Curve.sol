@@ -2,8 +2,8 @@
 pragma solidity 0.7.3;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./BondedToken.sol";
 
 contract Curve is Ownable {
@@ -13,115 +13,94 @@ contract Curve is Ownable {
     IERC20 internal collateralToken_;
 
     bool internal isInitialised_;
-    bool internal alive_;
-
-
-    //------------------------------------------------------------------------
-    // Modifiers
-    //------------------------------------------------------------------------
+    bool internal isAlive;
 
     modifier isUsable() {
         require(
-            isInitialised_ && alive_,
-            "Contract is not usable"
+            isInitialised_ && isAlive,
+            "Curve is unusable"
         );
         _;
     }
 
-    //------------------------------------------------------------------------
-    // Constructor
-    //------------------------------------------------------------------------
-
     constructor(
         address _bondedToken,
         address _collateralToken
-    ) {
+    ) 
+    {
         bondedToken_ = BondedToken(_bondedToken);
         collateralToken_ = IERC20(_collateralToken);
         isInitialised_ = false;
+        isAlive = true;
     }
 
-    //------------------------------------------------------------------------
-    // View
-    //------------------------------------------------------------------------
-
+    /**
+     * @param   _amount Is the amount of Bonded Tokens to be bought. 
+     * @return  Cost in collateral for the amount of bonded tokens.
+     */
     function buyCost(uint256 _amount) public view returns(uint256) {
         return (
-            areaAtSupply(bondedToken_.totalSupply().add(_amount)) - 
+            areaAtSupply(bondedToken_.totalSupply().add(_amount)) -
             areaAtSupply(bondedToken_.totalSupply())
         );
     }
 
+    function initialised() public {
+        require(
+            bondedToken_.isMinter(address(this)),
+            "Curve is not minter"
+        );
+        isInitialised_ = true;
+    }
+
     function sellReward(uint256 _amount) public view returns(uint256) {
         return (
-            areaAtSupply(bondedToken_.totalSupply()) - 
+            areaAtSupply(bondedToken_.totalSupply()) -
             areaAtSupply(bondedToken_.totalSupply().sub(_amount))
         );
     }
 
-    //------------------------------------------------------------------------
-    // Public
-    //------------------------------------------------------------------------
-
-    function init() public {
-        require(
-            bondedToken_.isMinter(address(this)),
-            "Curve must be minter"
-        );
-        alive_ = true;
-        isInitialised_ = true;
-    }
-
     function mint(uint256 _amount) public isUsable() returns(bool) {
-        // get the cost
+        // Get the cost of the amount
         uint256 cost = buyCost(_amount);
-        // take their money 
+        // Take their money
         require(
-            collateralToken_.transferFrom(
-                msg.sender,
-                address(this),
-                cost
-            ),
-            "Transfer failed :("
+            collateralToken_.transferFrom(msg.sender, address(this), cost),
+            "Transfer From failed :("
         );
         // Send them bonded tokens
         require(
             bondedToken_.mintTo(msg.sender, _amount),
-            "Mint Failed"
+            "Mint failed :("
         );
-        // return success 
+        // Return success 
         return true;
     }
 
     function burn(uint256 _amount) public isUsable() returns(bool) {
-        // get the reward
+        // Get the reward for the amount
         uint256 reward = sellReward(_amount);
-        // burn their tokens
+        // Burn their tokens
         require(
             bondedToken_.burnFrom(msg.sender, _amount),
-            "Burn failed"
+            "Burn failed :("
         );
-        // send them money
+        // Send them their money
         require(
-            collateralToken_.transfer(
-                msg.sender,
-                reward
-            ),
+            collateralToken_.transfer(msg.sender, reward),
             "Transfer failed :("
         );
-        // return success
+        // Return success
         return true;
     }
 
     function shutDown() public onlyOwner() {
-        alive_ = false;
-        // remove curve as minter
-        bondedToken_.removeMinter(address(this));
+        require(
+            bondedToken_.removeMinter(address(this)),
+            "Failed to remove"
+        );
+        isAlive = false;
     }
-
-    //------------------------------------------------------------------------
-    // Internal
-    //------------------------------------------------------------------------
 
     function areaAtSupply(uint256 _supply) internal pure returns(uint256) {
         uint256 pow = _supply**3;
@@ -131,5 +110,4 @@ contract Curve is Ownable {
         );
         return pow.div(3);
     }
-
 }

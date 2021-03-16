@@ -1,17 +1,18 @@
 {
-  "name": "ANSWERS_Hello_dec_workshop",
+  "name": "hello_dec_workshop",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "https://github.com/Nicca42/Bonding_curves_from_first_principal.git",
+  "author": "Veronica <veronica.21.coutts@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "scripts": {
+    "build": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "deploy:local": "npx hardhat run scripts/deploy.js"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "^3.4.0",
     "hardhat": "^2.0.11"
-  },
-  "scripts": {
-    "build": "npx hardhat compile",
-    "test": "hardhat test",
-    "deploy:local": "hardhat run scripts/deploy.js"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
